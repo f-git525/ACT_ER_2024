@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/main.js"></script>
+<title>ACT上下関係判定システム</title>
+</head>
+<body>
+	<h2 th:text="${screenName}"></h2>
+	<p>利用者</p>
+
+	<form th:action="@{/userSetting/search}" th:object="${userSettingForm}" method="post">
+		<table>
+			<tr>
+				<td class="use_title_area">利用者氏名:</td>
+				<td class="use_input_area"><input type="text" th:value="${userName}" style="width: 40ch;"></td>
+
+			</tr>
+			<tr>
+				<td class="use_title_area">所属チーム名：</td>
+				<td th:text="${teamName}"></td>
+			</tr>
+			<tr>
+				<td class="use_title_area">在籍年数：</td>
+				<td th:text="${fromEmploymentYears}"></td>
+			</tr>						
+	</table>
+		<button>検索</button>
+	</form>
+
+	<table border="1">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>入社年月日</th>
+                <th>年齢</th>
+                <th>所属チーム</th>
+                <th>役職</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employeeData : ${ dataList }">
+                <td th:text="${ employeeData.employeeName }"></td>
+                <td th:text="${ employeeData.field2 }"></td>
+                <td th:text="${ employeeData.field3 }"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
